@@ -1,0 +1,17 @@
+## learn
+### 枚举
+1. enum 枚举类型名字｛名字0，...，名字n｝
+2. 枚举类型名字通常不是真的使用，要用的是再大括号里的名字，因为它们就是常量符号，类型为int，值依次从0导n
+3. 枚举类型可以跟上enum作为类型，比如`enum color {red};...;enum color t = red;` 也就是enum 枚举类型名 = 类型，（声明时用的）
+4. 枚举类型本质上都是int，C里面不太常用这个类型
+5. 枚举类型可以在最后一个变量后在加一个计数变量，因为从0开始，所以计数变量的值，就是前面所有变量的个数
+6. 枚举可以指定值`enum color {red = 1}`
+### 结构
+1. `struct date{int month; int day; int year;};`，末尾是有分号的，跟do-while一样，最后把结构声明在所有函数外，这样到哪都能用
+2. 结构的使用`struct date today;today.month=1;today.day=31;` 有点向对象的实例化，`struct date today={1,31,2014};`，不给值就默认为0
+3. 结构声明的形式`struct point{int x;int y;};struct point p1,p2;` `struct{int x;int y;}p1,p2;` `struct point{int x;int y;}p1,p2;`第二种方式是无名结构
+4. 结构类型在函数外声明，结构变量在函数内定义，那么结构变量也是不能在函数外使用的
+5. 结构的成员可以是不同类型的，用的话就当成对象的属性来用就行了
+6. `struct date p1;p1 = (struct date){1,31,2014};` 强制转化类型
+7. 结构不像数组，结构变量的名字并不是结构变量的地址，要&结构变量名字，才能得到这个结构变量的地址
+8. 结构作为函数参数时，参数表内一定要是(struct date d)
