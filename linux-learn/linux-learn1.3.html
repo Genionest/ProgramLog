@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>系统调用和库函数</title>
+	<style type="text/css">
+		h3{
+			color: skyblue;
+		}
+		.blue{
+			color: skyblue;
+		}
+		.one-purple{
+			background-color: purple;
+			color: white;
+			width: 300px;
+			height: 300px;
+		}
+		.two-green{
+			background-color: green;
+			color: white;
+			width: 250px;
+			height: 250px;
+		}
+		.three-grey{
+			background-color: grey;
+			color: white;
+			width: 200px;
+			height: 200px;
+		}
+		.four-blue{
+			background-color: blue;
+			color: white;
+			width: 150px;
+			height: 150px;
+		}
+		.five-red{
+			background-color: red;
+			color: white;
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+</head>
+<body>
+	<h3>命令接口:</h3>
+	<p>以命令形式呈现在用户面前，方便用户直接间接控制自己的作业</p>
+	<h3>程序接口：</h3>
+	<p>能够管理并控制运行的程序，并且为这些运行的程序与系统和资源服务之间实现交互作用，他以程序调用的形式呈现在用户面前，由一组系统调用命令组成，这是为程序员通过汇编程序与操作系统打交道而提供的，用汇编语言编写程序的用户是通过他直接向系统提出调用外设的请求，而高级语言编写程序的用户也可以在编程时使用过程调用语句，通过相应的编译程序，将其翻译成相应的系统调用命令，再去调用系统提供的各种功能与服务</p>
+	<h3>图像接口：</h3>
+	<p>采用了图形化的操作界面，将各种应用程序和文件，直观地表现出来</p>
+	<br>
+	<h3>系统调用</h3>
+	<p>所有的操作系统都提供了应用程序可以调用内核服务的接口，unix系统的所有实现版本都提供一个良好定义的，数量有限的，介入内核的入口点，称之为系统调用，系统调用在用户空间进程和硬件设备之间添加了一个中间层，该层主要作用有三个：1.在用户空间提供一种抽象接口，例如，当读文件的时候，应用程序可以不管磁盘类型和介质，甚至不用去管文件所在的文件系统到底时那种类型；2.系统调用保证系统的稳定和安全，作为硬件设备和应用程序的中间人，内核可以基于权限、用户类型和其他一些规则，对需要进行的访问进行裁决，例如，这样可以避免应用程序不正确的使用硬件设备，窃取其他进程的资源，或者做出其他危害系统的事情；3.每个进程都运行在虚拟系统中，而在用户空间和系统的其余部分，提供这样一层公共接口，也是出于这种考虑。如果应用程序可以随意访问硬件，而内核一无所知的话，几乎不可能实现多任务虚拟内存，也不可能实现良好的稳定性和安全性。 在linux当中，系统调用是用户空间访问内核的唯一手段，除了异常和泄露之外，是内核唯一的合法入口。实际上，其他的像设备文件，POSIX之类的方式，最终也是通过系统调用进行访问的</p>
+	<strong>man 2 syscalls</strong>查看内核中所有系统调用
+	<br>
+	<br>
+	<h3>系统调用的类型</h3>
+	<p><div class="blue">
+		文件类系统调用:
+	</div>如打开、创建、读取、删除、修改文件</p>
+	<p><div class="blue">
+		进程控制类系统调用:
+	</div>如创建进程、设置或获取进程属性等</p>
+	<p><div class="blue">
+		通信类系统调用:
+	</div>创建进程间的通信连接，发送，接受消息，或其他的通信方式</p>
+	<p><div class="blue">
+		设备管理类系统调用:
+	</div>打开、关闭和操作设备</p>
+	<p><div class="blue">
+		信息维护类系统调用:
+	</div>在用户程序和OS之间传递信息。例如，系统向用户程序传送当前时间、日期、操作系统版本号等</p>
+	<br>
+	<h3>系统调用与C库函数的关系</h3>
+	<p>并非一一对应或必有对应</p>
+	<br>
+	<h3>Unix/Linux软件层次架构</h3>
+	<div class='one-purple'>
+		Application 应用程序
+		<div class="two-green">
+			Shell 命令解释器/Function 库函数
+			<div class="three-grey">
+				System Call 系统调用
+				<div class="four-blue">
+					Kernel 内核
+					<div class="five-red">
+						Hardware 硬件
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

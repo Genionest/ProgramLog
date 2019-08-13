@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>常用linux命令 用户权限管理类命令</title>
+	<style type="text/css">
+		h2{
+			color: skyblue;
+		}
+		h3{
+			color: skyblue;
+		}
+		.skyblue{
+			font-size: 18px;
+			color: skyblue;
+		}
+		.red{
+			color: red;
+		}
+		.green{
+			color: green;
+		}
+		.pink{
+			color: pink;
+		}
+		.grey{
+			color: grey;
+		}
+		.block{
+			width: 30%;
+			border: 3px solid black;
+		}
+	</style>
+</head>
+<body>
+	<h2>用户权限管理类命令</h2>
+	<h3>Linux用户</h3>
+	<ul>
+		<li><span class="skyblue">超级用户：</span>拥有最高权限</li>
+		<li><span class="skyblue">系统用户：</span>与系统服务相关，但不能用于登录</li>
+		<li><span class="skyblue">普通用户：</span>由超级用户创建并赋予权限，只能操作其拥有的权限的文件和目录，只能管理自己启动的进程</li>
+	</ul>
+	<h3>用户信息</h3>
+	<ul>
+		<li>用户名：唯一，由字母、数字和符号组成</li>
+		<li>口令</li>
+		<li>用户ID(uid)：每个用户拥有的唯一的识别号码。超级用户为0，系统用户1-499，普通用户从500开始</li>
+		<li>用户组id(gid)</li>
+		<li>用户主目录</li>
+		<li>全称：用户账户的附加信息，可以为空</li>
+		<li>登录Shell：默认使用Bash</li>
+	</ul>
+	<h3>用户相关文件</h3>
+	<ul><span class="skyblue">用户账号信息文件/etc/password</span>
+		<li>文件中每一行为一个用户的信息</li>
+		<li>文件中各字段从左到右依次为：用户名、口令、用户ID、用户组、全称、用户主目录和登录Shell</li>
+		<li>口令字段用x来填充，加密后的口令保存在/etc/shadow文件中</li>
+	</ul>
+	<ul><span class="skyblue">用户口令信息文件/etc/shadow</span>
+		<li>shadow 文件只有超级用户才能查看并修改其内容，且加密存储</li>
+	</ul>
+	<h3>用户组</h3>
+	<ul>
+		<li>linux将相同特性的用户划归为同一用户组，可以大大简化用户的管理，方便用户之间文件的共享，任何用户都至少属于一个用户组</li>
+		<li>一个用户只能属于一个用户组，但可以同时属于多个附加组。用户不仅拥有其用户组的权限，还同时拥有其附加组的权限</li>
+		<li>用户组包括系统用户组与私人用户组</li>
+	</ul>
+	<h3>用户组相关文件</h3>
+	<ul><span class="skyblue">用户组账号信息文件/etc/group</span>
+		<li>每一行为一个用户组信息</li>
+		<li>文件中各字段从左到右依次为：用户组名、口令、用户组ID和附加用户列表</li>
+	</ul>
+	<ul><span class="skyblue">用户组口令信息文件/etc/gshadow</span>
+		<li>同/etc/shadow</li>
+	</ul>
+	<div>
+		<h3>用户管理命令</h3>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				useradd
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				user add
+			</div>
+			<div><span class='green'>语法：</span>
+				useradd [-degGsu] 用户名
+			</div>
+			<div><span class='red'>功能描述：</span>
+				新建用户账号（超级用户可用）
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-d: 指定用户登入是的主目录</li>
+					<li>-e: 账号终止日期</li>
+					<li>-g: 指定账户所属的用户组</li>
+					<li>-G: 指定账户所属的附加组</li>
+					<li>-s: 指定账户登录后所使用的shell</li>
+					<li>-u: 指定用户ID号</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				$ useradd -g net04 zhangsan 新建一个用户zhangsan，用户组为net04
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				passwd
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				password
+			</div>
+			<div><span class='green'>语法：</span>
+				passwd [-dlus] 用户
+			</div>
+			<div><span class='red'>功能描述：</span>
+				设置或修改用户的口令以及口令的属性
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-d: (delete)删除用户的口令</li>
+					<li>-l: (lock)暂时锁定指定的用户账号</li>
+					<li>-u: (unlock)解除指定用户账号的锁定</li>
+					<li>-s: (status)显示指定用户账号的状态</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				<ul>
+					<li>$ passwd zhangsan 设置与修改属性</li>
+					<li>$ passwd -d zhnagsan 删除口令</li>
+					<li>$ passwd -l zhangsan 锁定用户账号</li>
+					<li>$ passwd -u zhangsan 解锁用户账号</li>
+				</ul>
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				usermod
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				user modify
+			</div>
+			<div><span class='green'>语法：</span>
+				usermod [-degGsul] 用户名
+			</div>
+			<div><span class='red'>功能描述：</span>
+				修改用户的属性（超级用户可用）
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-d: (directory)指定用户登入是的主目录</li>
+					<li>-e: (end)账号终止日期</li>
+					<li>-g: (group)指定账户所属的用户组</li>
+					<li>-G: 指定账户所属的附加组</li>
+					<li>-s: (shell)指定账户登录后所使用的shell</li>
+					<li>-u: (user)指定用户ID号</li>
+					<li>-l: 新用户名（用于修改用户名）</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				$ usermod -l zhangs zhangsan 将zhangsan改为zhangs
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				userdel
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				user delete
+			</div>
+			<div><span class='green'>语法：</span>
+				userdel [-rf] 用户名
+			</div>
+			<div><span class='red'>功能描述：</span>
+				删除指定的用户账号
+				<p>如果删除用户属于私人组群，而该组群没有其他用户，组群也一并删除</p>
+				<p>正在使用系统的用户不能删除</p>
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-r: 不仅删除此用户账号，而且删除用户主目录及本地邮件存储的目录或文件</li>
+					<li>-f: 删除用户登入目录以及目录中所有的文件</li>
+				</ul>
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				su
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				switch user
+			</div>
+			<div><span class='green'>语法：</span>
+				su 用户名
+			</div>
+			<div><span class='red'>功能描述：</span>
+				切换用户身份
+				<p>超级用户可以切换为任何普通用户，而不需要输入口令；普通用户转换为其他用户时需要输入被切换用户的口令</p>
+				<p>使用exit可以返回到本来的用户身份</p>
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				id
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				id
+			</div>
+			<div><span class='green'>语法：</span>
+				id 用户名
+			</div>
+			<div><span class='red'>功能描述：</span>
+				查看用户的UID、GID和用户所属用户组的信息，如果不指定用户，则显示当前用户的相关信息
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				whoami
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				who am I
+			</div>
+			<div><span class='green'>语法：</span>
+				whoami
+			</div>
+			<div><span class='red'>功能描述：</span>
+				查看当前用户名
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				w
+			</div>
+			<div><span class='green'>语法：</span>
+				w
+			</div>
+			<div><span class='red'>功能描述：</span>
+				查看当前登录系统用户和详细信息
+			</div>
+		</div><br>
+		<h3>用户组管理命令</h3>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				groupadd
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				group add
+			</div>
+			<div><span class='green'>语法：</span>
+				groupadd [-go] 用户组名
+			</div>
+			<div><span class='red'>功能描述：</span>
+				新建组群（超级用户可用）
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-g: 指定用户组ID</li>
+					<li>-o: 允许组ID号不唯一</li>
+				</ul>
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				groupmod
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				group modify
+			</div>
+			<div><span class='green'>语法：</span>
+				groupmod [-gno] 用户组名
+			</div>
+			<div><span class='red'>功能描述：</span>
+				修改指定用户组的属性（超级用户可用）
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-g: 指定新的用户组ID</li>
+					<li>-n: 指定新的用户组名字</li>
+					<li>-o: 允许组ID号不唯一</li>
+				</ul>
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				groupdel
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				group delete
+			</div>
+			<div><span class='green'>语法：</span>
+				groupdel 用户组名
+			</div>
+			<div><span class='red'>功能描述：</span>
+				删除指定的用户组（超级用户可用）
+				<p>在删除指定用户组之前必须保证该用户组不是任何用户的主要组群，否则要线删除以此用户组为主要群组的用户才可以删除该用户组</p>
+			</div>
+		</div><br>
+		<h3>文件权限</h3>
+		<ul><span class="skyblue">读取权限：</span>
+			<li>浏览文件/目录中内容的权限</li>
+		</ul>
+		<ul><span class="skyblue">写入权限：</span>
+			<li>对文件而言是修改文件内容的权限</li>
+			<li>对目录而言是删除、添加和重命名目录内文件的权限</li>
+		</ul>
+		<ul><span class="skyblue">执行权限：</span>
+			<li>对可执行文件而言是允许执行的权限</li>
+			<li>对目录而言是进入目录的权限</li>
+		</ul>
+		<h3>基于用户的文件管理权限</h3>
+		<ul><span class="skyblue">文件用户分类</span>
+			<li>文件所有者：建立文件和目录的用户</li>
+			<li>文件所有者所在组用户：文件所有者所属用户组中的其他用户</li>
+			<li>其他用户：既不是文件所有者，又不在文件所有者所在组的其他所有用户</li>
+			<li>超级用户：负责整个系统的管理和维修，拥有系统中所有文件的全部访问权限</li>
+		</ul>
+		<img src="user-right.png">
+		<h3>文件权限管理命令</h3>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				chmod
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				change mode
+			</div>
+			<div><span class='green'>语法：</span>
+				chmod [模式] [文件]
+			</div>
+			<div><span class='grey'>参数：</span>
+				<ul>
+					<li>对象：u 文件所有者，g 同组用户，o 其他用户</li>
+					<li>操作符：+ 增加，- 删除，= 赋予</li>
+					<li>权限：r 读，w 写，x 执行，s 设置用户ID</li>
+				</ul>
+			</div>
+			<div><span class='red'>功能描述：</span>
+				修改文件的访问权限
+			</div>
+			<div><span class='pink'>范例：</span>
+				<ul>
+					<li>$ chmod g-w file 取消同组用户对file文件的写入权限</li>
+					<li>$ chmod 775 pict 将pict目录的访问权限设置为775</li>
+					<li>$ chmod u+s file 设置file文件的设置用户ID位</li>
+				</ul>
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				chown
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				change owner
+			</div>
+			<div><span class='green'>语法：</span>
+				chown [选项] 所有者/组 文件
+ 			</div>
+			<div><span class='grey'>参数：</span>
+				<ul>
+					<li>-c: 显示更改的部分的信息</li>
+					<li>-f: 忽略错误信息</li>
+					<li>-h: 修复符号链接</li>
+					<li>-R: 处理指定目录以及其子目录下的所有文件</li>
+					<li>-v: 显示详细的处理信息</li>
+					<li>-deference: 作用与符号链接的指向，而不是链接文件本身</li>
+					<li>用户是用户名或者用户ID，用户组可以是组名或者组ID</li>
+					<li>文件是以空格分开的要改变权限的文件列表，支持通配符</li>
+				</ul>
+			</div>
+			<div><span class='red'>功能描述：</span>
+				将指定文件的拥有着改为指定的用户或用户组
+			</div>
+			<div><span class='pink'>范例：</span>
+				$ chown hellen ex1 将ex1的所有者由root改为hellen
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				chgrp
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				change group
+			</div>
+			<div><span class='green'>语法：</span>
+				chgrp [选项] 组 文件
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-c: 当发生改变时输出调式信息</li>
+					<li>-f: 不显示错误信息</li>
+					<li>-R: 处理指定目录以及其子目录下的所有文件</li>
+					<li>-v: 运行时显示详细的处理信息</li>
+					<li>-dereference: 作用于符号链接的指向，而不是符号链接本身</li>
+					<li>--no-dereference: 作用于符号链接本身</li>
+					<li>用户组可以时组名或者组ID</li>
+				</ul>
+			</div>
+			<div><span class='red'>功能描述：</span>
+				改变文件的所属用户组
+			</div>
+			<div><span class='pink'>范例：</span>
+				$ chgrp staff ex1 将ex1文件所属的用户组由root改为staff
+			</div>
+		</div><br>
+
+		
+	</div>
+</body>
+</html>

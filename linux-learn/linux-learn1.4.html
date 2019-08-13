@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>常用linux命令 文件目录类命令</title>
+	<style type="text/css">
+		h2{
+			color: skyblue;
+		}
+		h3{
+			color: skyblue;
+		}
+		.skyblue{
+			font-size: 18px;
+			color: skyblue;
+		}
+		.red{
+			color: red;
+		}
+		.green{
+			color: green;
+		}
+		.pink{
+			color: pink;
+		}
+		.grey{
+			color: grey;
+		}
+		.block{
+			width: 30%;
+			border: 3px solid black;
+		}
+	</style>
+</head>
+<body>
+	<h3>文件目录类命令</h3>
+	<h3>进程控制类命令</h3>
+	<h3>用户权限及管理类命令</h3>
+	<div>
+		<p>命令格式：</p>
+		<ul>
+			<li>命令名称</li>
+			<li>-选项</li>
+			<li>参数</li>
+		</ul>
+	</div>
+	<div>
+		<h2>文件目录类命令</h2>
+		<ul>
+			<li>浏览目录命令：ls pwd</li>
+			<li>目录操作命令：cd mkdir rmdir</li>
+			<li>浏览文件命令：cat more less head tail</li>
+			<li>文件操作命令：cp rm mv find grep tar</li>
+		</ul>
+	</div>
+	<div>
+		<h3>浏览目录命令</h3>
+		<div class="block">
+			<div><span class="skyblue">命令名称：</span>ls</div>
+			<div><span class='skyblue'>命令英文原名：</span>list</div>
+			<div><span class='green'>语法：</span>ls [-ald] [文件或目录]</div>
+			<div><span class='red'>功能描述：</span>显示目录文件</div>
+			<div><span class='grey'>选项：</span></div>
+			<p>-a 显示所有文件，包括隐藏文件（.开头）</p>
+			<p>-l 显示详细信息</p>
+			<p>-d 查看目录属性（d/ 目录，f/ 文件）</p>
+		</div><br>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>pwd</div>
+			<div><span class='skyblue'>命令英文原名：</span>print working directory</div>
+			<div><span class='green'>语法：</span>pwd</div>
+			<div><span class='red'>功能描述：</span>显示当前所在的工作目录</div>
+		</div><br>
+		<br>
+		<h3>目录操作命令</h3>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>cd</div>
+			<div><span class='skyblue'>命令英文原名：</span>change directory</div>
+			<div><span class='green'>语法：</span>cd [目录]</div>
+			<div><span class='red'>功能描述：</span>切换目录</div>
+			<div><span class='pink'>范例：</span><ul>
+				<li>$ cd / 切换到根目录</li>
+				<li>$ cd .. 切换到上一级目录</li>
+			</ul></div>
+		</div><br>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>mkdir</div>
+			<div><span class='skyblue'>命令英文原名：</span>make directory</div>
+			<div><span class='green'>语法：</span>mkdir [目录名]</div>
+			<div><span class='red'>功能描述：</span>创建新目录</div>
+			<div><span class='pink'>范例：</span>$ mkdir newdir</div>
+		</div><br>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>rmdir</div>
+			<div><span class='skyblue'>命令英文原名：</span>remove directory</div>
+			<div><span class='green'>语法：</span>rmdir [目录名]</div>
+			<div><span class='red'>功能描述：</span>删除空目录</div>
+			<div><span class='pink'>范例：</span>$ rmdir newdir</div>
+		</div><br>
+		<h3>浏览文件命令</h3>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>cat</div>
+			<div><span class='skyblue'>命令英文原名：</span>concatenate and display files</div>
+			<div><span class='green'>语法：</span>cat [-En] [文件名]</div>
+			<div><span class='red'>功能描述：</span>连接文件并打印到标准输出设备上</div>
+			<div><span class='pink'>范例：</span><ul>
+				<li>cat m1 (在屏幕上显示文件m1的内容) cat m1 m2</li>
+				<li>(同时显示文件m1和m2的内容)</li>
+			</ul></div>
+		</div><br>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>
+				more
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				more
+			</div>
+			<div><span class='green'>语法：</span>
+				more [文件名]
+			</div>
+			<div><span class='red'>功能描述：</span>
+				分页显示文件内容，
+				<p>空格或f 显示下一页</p>
+				<p>enter 显示下一行</p>
+				<p>q或Q 退出</p>
+			</div>
+			<div><span class='pink'>范例：</span>
+				$ more /etc/services
+			</div>
+		</div><br>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>
+				less
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				less
+			</div>
+			<div><span class='green'>语法：</span>
+				less [文件名]
+			</div>
+			<div><span class='red'>功能描述：</span>
+				分页显示文件内容，除了more的操作意外还可以利用上下键来卷动文件
+			</div>
+			<div><span class='pink'>范例：</span>
+				$ less /etc/services
+			</div>
+		</div><br>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>
+				head
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				head
+			</div>
+			<div><span class='green'>语法：</span>
+				head [-n] [文件名]
+			</div>
+			<div><span class='red'>功能描述：</span>
+				显示文件前几行的内容
+			</div>
+			<div><span class='grey'>选项：</span>
+				-n: 显示前n行，默认为10
+			</div>
+			<div><span class='pink'>范例：</span>
+				$ head /etc/passwd
+			</div>
+		</div><br>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>
+				tail
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				tail
+			</div>
+			<div><span class='green'>语法：</span>
+				tail [+-n/-F] [文件名]
+			</div>
+			<div><span class='red'>功能描述：</span>
+				显示文件后几行的内容
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>
+						-n: 显示后n行，默认为10
+					</li>
+					<li>
+						+n: 从第n行显示到文件尾
+					</li>
+					<li>
+						-F: 用于追踪显示不断增长的文件结尾内容（通常用于显示日志文件）
+					</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				$ tail /etc/passwd
+			</div>
+		</div><br>
+		<h3>文件操作命令</h3>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>
+				cp
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				copy
+			</div>
+			<div><span class='green'>语法：</span>
+				cp [-piru] 源文件路径 目标文件路径
+			</div>
+			<div><span class='red'>功能描述：</span>
+				将文件从一处复制到另一处
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-p: 连同文件属性一起复制，常用与备份</li>
+					<li>-i: 若目标文件已存在，会线询问是否覆盖</li>
+					<li>-r: 递归持续复制，用于目录的复制</li>
+					<li>-u: 目标文件与源文件有差异时才会复制</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				<ul>
+					<li>$ cp test1.txt test2.txt</li>
+					<li>$ cp test3.txt /tmp 将test3.txt复制到/tmp目录中</li>
+					<li>$ cp -r test1(目录) test2(目录) 拷贝目录test1到目录test2</li>
+				</ul>
+			</div>
+		</div><br>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>
+				rm
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				remove
+			</div>
+			<div><span class='green'>语法：</span>
+				rm [-fir] [文件名]
+			<div><span class='red'>功能描述：</span>
+			</div>
+				删除文件或目录
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-f: force，忽略不存在的文件，不会出现警告消息</li>
+					<li>-i: 互动模式，在删除前会询问用户是否操作</li>
+					<li>-r: 递归删除，最常用于目录删除，它是一个非常危险的参数</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				<ul>
+					<li>$ rm myfiles</li>
+					<li>$ rm * 删除当前目录下的所有文件</li>
+					<li>$ rm -r myfolder 删除某个目录</li>
+					<li>$ rm -f *.txt 强迫删除所有后缀名为.txt文件</li>
+					<li>$ rm -i * 删除当前目录下的所以偶文件，删除前会询问</li>
+				</ul>
+			</div>
+		</div><br>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>
+				find
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				find
+			</div>
+			<div><span class='green'>语法：</span>
+				find 路径 [参数]
+			</div>
+			<div><span class='grey'>选项和参数：</span>
+				<ul>
+					<li>-name filename: 找出文件名为filename的文件</li>
+					<li>-size [+-]SIZE: 找出比SIZE大(+)或小(-)的文件</li>
+					<li>-type TYPE: 查找文件的类型为TYPE的文件，TYPE的值主要有：一般文件(f)、设备而文件(b、c)、目录(d)、连接文件(l)、socket(s)、FIFO管道文件(p)</li>
+					<li>-perm mode: 查找文件权限刚好等于mode的文件，mode用数字表示，如0755</li>
+				</ul>
+			</div>
+			<div><span class='red'>功能描述：</span>
+				寻找文件或目录
+			</div>
+			<div><span class='pink'>范例：</span>
+				<ul>
+					<li>$ find -name ctime 在当前目录下查找名为ctime的文件</li>
+					<li>$ find -type c 在当前目录下查找设备文件</li>
+				</ul>
+			</div>
+		</div><br>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>
+				grep
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				Globally search a Regular Expression and Print
+			</div>
+			<div><span class='green'>语法：</span>
+				grep [-aciv] 要找的字串 要寻找的字串的源文件
+			</div>
+			<div><span class='red'>功能描述：</span>
+				全局，在文件中搜索匹配的字符并输出，每个输出一行
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-a: 将binary文件以text文件的方式查找数据</li>
+					<li>-c: 计算找到“查找字符串”的次数</li>
+					<li>-i: 忽略大小写的区别，即把大小写是为相同</li>
+					<li>-v: 反响选择，即显示出不包‘查找字符串’内容的那一行</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				<ul>
+					<li>$ grep errno errno.h 找errno.h里查找errno字符串</li>
+					<li>$ gerp errno *.h 在所有的.h文件里查找errno字符串</li>
+				</ul>
+			</div>
+		</div><br>
+		<div class="block">
+			<div><span class='skyblue'>命令名称：</span>
+				tar
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				tape archive
+			</div>
+			<div><span class='green'>语法：</span>
+				tar [参数] 文件
+			</div>
+			<div><span class='red'>功能描述：</span>
+				能够将用户所指定的文件或目录打包成一个文件，也可以通过指定参数开启压缩/解压缩功能
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-c: 新建打包文件</li>
+					<li>-t: 查看打包文件的内容有哪些文件名</li>
+					<li>-x: 解打包或解压缩的功能，可以搭配-C(大写)指定解压的目录，注意-c,-t,-x不能同时出现在同一条命令中</li>
+					<li>-j: 通过bzip2支持进行压缩/解压缩</li>
+					<li>-z: 通过gzip的支持进行压缩/解压缩</li>
+					<li>-v: 在压缩/解压缩过程中，将正在处理的文件名显示出来</li>
+					<li>-f filename: filename为要处理的文件</li>
+					<li>-C dir: 指定压缩/解压缩的目录dir</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				<ul>
+					<li>$ tar -cvf test.tar * 将当前目录的所有文件打包成test.tar</li>
+					<li>$ tar -czvf test.tar.gz * 将当前目录的所有文件打包成test.tar，再用gzip命令压缩</li>
+					<li>$ tar -tf test.tar 查看test.tar文件中包括了那些文件</li>
+					<li>$ tar -xvf test.tar 将test.tar解打包</li>
+					<li>$ tar -xzvf foo.tar.gz 将foo.tar.gz解压缩并解打包</li>
+				</ul>
+			</div>
+		</div><br>
+
+		
+	</div>
+</body>
+</html>

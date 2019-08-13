@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>常用linux命令 进程控制类命令</title>
+	<style type="text/css">
+		h2{
+			color: skyblue;
+		}
+		h3{
+			color: skyblue;
+		}
+		.skyblue{
+			font-size: 18px;
+			color: skyblue;
+		}
+		.red{
+			color: red;
+		}
+		.green{
+			color: green;
+		}
+		.pink{
+			color: pink;
+		}
+		.grey{
+			color: grey;
+		}
+		.block{
+			width: 30%;
+			border: 3px solid black;
+		}
+	</style>
+</head>
+<body>
+	<h2>进程控制类命令</h2>
+	<ul>
+		<li>查看系统中的进程命令：ps top</li>
+		<li>控制系统中的进程命令：kill killall nice renice</li>
+		<li>进程后台运行命令： &</li>
+		<li>进程的挂机和恢复：</li>
+	</ul>
+	<p>相关概念</p>
+	<ul>
+		<li>程序：是一个包含可执行代码的文件，它放在磁盘等介质上</li>
+		<li>当程序被操作系统装载到内存并分配给它一定资源后，此时可称为进程</li>
+		<li>程序是静态概念，进程是动态概念</li>
+	</ul>
+	<p>进程状态：</p>
+	<img src="process_status.png">
+	<div>
+		<h3>查看系统中的进程命令</h3>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				ps
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				Process
+			</div>
+			<div><span class='green'>语法：</span>
+				ps [-lujfaxr]
+			</div>
+			<div><span class='red'>功能描述：</span>
+				显示系统瞬间的进程信息，它可以显示在用户输入ps命令时系统的进程及进程的相关信息
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-l: 长格式输出</li>
+					<li>-u: 按用户名和启动时间的顺序来显示进程</li>
+					<li>-j: 用任务格式来显示进程</li>
+					<li>-f: 用树形格式来显示进程</li>
+					<li>-a: 显示所有用户的所有进程（包括其他用户）</li>
+					<li>-x: 显示无法控制终端的进程</li>
+					<li>-r: 显示运行中的进程</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				<ul>
+					<li>$ ps 显示本用户的进程</li>
+					<li>$ ps -aux 查看系统和每位用户全部进程</li>
+					<li>$ ps -aux|grep pp 查找pp用户的进程</li>
+				</ul>
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				top
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				top
+			</div>
+			<div><span class='green'>语法：</span>
+				top [=bcdinpqsS]
+			</div>
+			<div><span class='red'>功能描述：</span>
+				动态监视系统任务的工具，输出结果时连续的
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-b: 以批量模式运行，但不能接受命令行输入</li>
+					<li>-c: 显示命令行，而不仅仅时命令名</li>
+					<li>-d N: N为两次刷新时间的间隔，比如-d 5，表示两次刷新时间的间隔为5秒</li>
+					<li>-i: 禁止显示空闲进程或僵尸进程</li>
+					<li>-n NUM: NUM为更新次数，然后推出。比如-n 5，表示top更新5次数据就退出</li>
+					<li>-p: PID仅监视指定进程的ID；PID时一个数值</li>
+					<li>-q: 不经任何延时就刷新</li>
+					<li>-s: 安全模式运行，禁用一些效互指令</li>
+					<li>-S: 累积模式，输出每个进程的总的CPU时间</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				
+			</div>
+		</div><br>
+		<h3>控制系统中的进程命令</h3>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				kill
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				kill
+			</div>
+			<div><span class='green'>语法：</span>
+				kill -signal PID
+			</div>
+			<div><span class='red'>功能描述：</span>
+				用于向某个进程（通过PID标识）传送一个信号，它通常与ps和jobs命令一起使用
+			</div>
+			<div><span class='grey'>signal参数：</span>
+				<ul>
+					<li>1:SIGHUP，启动被终止的进程</li>
+					<li>2:SIGINT，相当于ctrl+c，中断一个进程的进行</li>
+					<li>9:SIGKILL，强制中断一个进程的进行</li>
+					<li>15:SIGTERM，以正常的结束进程方式来终止进程</li>
+					<li>17:SIGSTOP，相当于ctrl+z，暂停一个进程的进行</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				<ul>
+					<li>$ kill -SIGTERM %1 以正常的结束进程方式来终止第一个后台工作进程</li>
+					<li>$ kill -SIGHUP PID 重新启动进程ID为PID的进程</li>
+				</ul>
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				killall
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				kill all
+			</div>
+			<div><span class='green'>语法：</span>
+				killall [-eIpilqrsu] 正在运行的进程名
+			</div>
+			<div><span class='red'>功能描述：</span>
+				直接通过进程的名称来杀死进程，使用此指令可以杀死一组同名进程
+			</div>
+			<div><span class='grey'>选项：</span>
+				<ul>
+					<li>-e: 对长名称进行精确匹配</li>
+					<li>-I: 忽略大小写的不同</li>
+					<li>-p: 杀死进程所属的进程组</li>
+					<li>-i: 杀死进程前进行询问</li>
+					<li>-l: 打印所有已知信号列表</li>
+					<li>-q: 如果没有进程杀死。则不输出任何信息</li>
+					<li>-r: 使用怎敢则表达式匹配要杀死的进程名称</li>
+					<li>-s: 用指定的进程号代替默认信号“SIGTERM”</li>
+					<li>-u: 杀死指定用户的进程</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				$ killall game 杀死叫game的进程
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				nice
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				nice
+			</div>
+			<div><span class='green'>语法：</span>
+				nice [参数] command
+			</div>
+			<div><span class='grey'>参数：</span>
+				nice命令允许在默认优先级的基础上进行增大或减小的方式来运行命令
+			</div>
+			<div><span class='red'>功能描述：</span>
+				<ul>
+					<li>command 是系统中任意可执行文件的名称</li>
+					<li>-n adjustment 指定程序运行优先级的调整值</li>
+					<li>优先级的调整值范围为20~-19，其中数值越小优先级越高，数值越大优先级越低</li>
+					<li>若nice命令未指定优先级的调整值，则以缺省值10来调整程序运行优先级，即在命令通常运行优先级基础之上增加10</li>
+				</ul>
+			</div>
+			<div><span class='pink'>范例：</span>
+				$ nice -n -5 myprogram& 在后台以通常运行优先级-5的优先级运行myprogram
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				renice
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				renice
+			</div>
+			<div><span class='green'>语法：</span>
+				renice [-n] pid
+			</div>
+			<div><span class='red'>功能描述：</span>
+				改变一个正在运行的进程的nice值
+			</div>
+			<div><span class='grey'>选项：</span>
+				-n: 指定程序运行优先级的调整值
+			</div>
+			<div><span class='pink'>范例：</span>
+				$ renice -5 777 将正在运行的PID为777的进程nice值改为-5
+			</div>
+		</div><br>
+		<h3>在后台运行程序的&命令</h3>
+		<div class="block">
+			<div><span class='pink'>范例：</span>
+				$ cp -r /usr/* test& 将/usr目录下的所有子目录及文件复制到/root/test目录下的工作放到后台运行
+			</div>
+		</div>
+		<br>
+		<h3>进程的挂起和恢复</h3>
+		<div class='block'>
+			<div><span class='red'>功能描述：</span>
+				进程的挂起和终止
+			</div>
+			<div><span class='green'>语法：</span>
+				<ul>
+					<li>挂起： ctrl+z</li>
+					<li>终止： ctrl+c</li>
+				</ul>
+			</div>
+		</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				fg / bg
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				foreground / background
+			</div>
+			<div><span class='green'>语法：</span>
+				fg [n] / bg [n]
+			</div>
+			<div><span class='red'>功能描述：</span>
+				恢复进程
+			</div>
+		</div><br>
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				jobs
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				jobs
+			</div>
+			<div><span class='red'>功能描述：</span>
+				查看被挂起的进程
+			</div>
+		</div><br>
+
+		<div class='block'>
+			<div><span class='skyblue'>命令名称：</span>
+				
+			</div>
+			<div><span class='skyblue'>命令英文原名：</span>
+				
+			</div>
+			<div><span class='green'>语法：</span>
+				
+			</div>
+			<div><span class='red'>功能描述：</span>
+				
+			</div>
+			<div><span class='grey'>选项：</span>
+				
+			</div>
+			<div><span class='pink'>范例：</span>
+				
+			</div>
+		</div><br>
+	</div>
+
+</body>
+</html>
