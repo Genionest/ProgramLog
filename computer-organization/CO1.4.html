@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>计算机主要技术指标</title>
+	<style type="text/css">
+		h4{
+			color: skyblue;
+		}
+		a{
+			color: orange;
+		}
+	</style>
+</head>
+<body>
+	<h4>运算速度：</h4>
+	<p>
+		影响计算机的运算速度有很多技术指标，主要包括： <a href="">吞吐量</a>, 
+		<a href="">响应时间</a>, 
+		<a href="">主频</a>, 
+		<a href="">CPU时钟周期</a>, 
+		<a href="">CPI</a>, 
+		<a href="">CPU执行时间</a>, 
+		<a href="">MIPS</a>, 
+		<a href="">MFLOPS</a>, 
+	</p>
+	<h4>吞吐量：</h4>
+	<p>
+		指计算机系统在单位时间内处理请求的数量
+	</p>
+	<h4>响应时间</h4>
+	<p>
+		指计算机系统对请求做出响应的时间，响应时间包括CPU时间与等待时间的总和
+	</p>
+	<h4>主频：</h4>
+	<p>
+		又称时钟频率，表示在CPU内数字脉冲信号振荡的速度
+	</p>
+	<h4>时钟周期：</h4>
+	<p>
+		CPU主频的倒数，是CPU中最小的时间元素。每个动作至少需要一个时钟周期。CPI（Cycle per Instruction）：
+	</p>
+	<p>
+		是指每条指令执行所用的时钟周期数。在现代高性能计算机中，由于采用各种并行技术，使指令执行高度并行化，常常是一个系统时钟周期可以处理若干条指令。所以CPI参数经常用IPC（Instruction per Cycle）表示，即每个时钟周期执行的指令数：
+	</p>
+	<strong>CPI = 1 / IPC</strong>
+	<h4>CPU执行时间：</h4>
+	<p>CPU执行时间 = CPU时钟周期数 / 时钟频率 = 指令数*CPI / 时钟频率</p>
+	<h4>MIPS（Million Instructions per Second）：</h4>
+	<p>
+		表示每秒执行多少百万条指令。对于一个给定的程序，MIPS定义为：
+	</p>
+	<strong>
+		MIPS = 指令条数 / 执行时间 * 10^6 = 主频 / CPI = 主频 * IPC
+	</strong>
+	<h4>MFLOPS（Million Floating-point Operations per Second）</h4>
+	<p>
+		表示每秒执行多少百万次浮点运算，对于一个给定的程序，MFLOPS定义为：
+	</p>
+	<strong>
+		MFLOPS = 浮点操作次数 / 执行时间 * 10^6
+	</strong>
+</body>
+</html>
